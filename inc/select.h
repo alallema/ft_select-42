@@ -49,7 +49,18 @@
 # define ALT_UP 1096489755
 # define ALT_DOWN 1113266971
 
+/*
+** error
+*/
 # define ERR_MALL "Memory error"
+
+/*
+** print format
+*/
+# define DEFAULT 	0
+# define UNDERLINE 	1
+# define HIGHTLIGHT 2
+# define UNDERLIGHT 3
 
 typedef struct	s_win
 {
@@ -67,11 +78,20 @@ typedef struct	s_curs
 	int 	win_row;
 }				t_curs;
 
+typedef struct	s_lst
+{
+	int				i;
+	int				key;
+	char			*content;
+	struct s_lst	*next;
+	struct s_lst	*prev;
+}				t_lst;
+
 typedef struct 	s_data
 {
 	int		len;
 	int		len_max;
-	char	**args;
+	t_lst	*list;
 }				t_data;
 
 typedef struct	s_term
@@ -85,9 +105,13 @@ int				close_termios(void);
 int				t_putchar(int i);
 void			signal_handler(void);
 t_win			*get_window(void);
-int				key_press(t_data *data);
+int				key_press(void);
 void			print_key_stdout(int i);
 int				print_error(char *err);
 void			print_elem(char *s);
+int				brain_print(void);
+t_data			*get_data(t_data *data);
+t_lst			*lstnew(char *content, int i, int key);
+void			lstpushback(t_lst **alst, char *content, int i, int key, int len);
 
 #endif
