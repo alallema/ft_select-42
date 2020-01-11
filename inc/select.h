@@ -64,19 +64,11 @@
 
 typedef struct	s_win
 {
+	int		ws_col;
+	int		ws_row;
 	int		col;
 	int		row;
-	int		letter;
-	int		elem;
 }				t_win;
-
-typedef struct	s_curs
-{
-	int 	col;
-	int 	row;
-	int 	win_col;
-	int 	win_row;
-}				t_curs;
 
 typedef struct	s_lst
 {
@@ -108,10 +100,12 @@ t_win			*get_window(void);
 int				key_press(void);
 void			print_key_stdout(int i);
 int				print_error(char *err);
-void			print_elem(char *s);
 int				brain_print(void);
 t_data			*get_data(t_data *data);
 t_lst			*lstnew(char *content, int i, int key);
 void			lstpushback(t_lst **alst, char *content, int i, int key, int len);
+void    		free_data(void);
+void    		clear_elem(void);
+void    		check_iterator(t_data *data, int len);
 
 #endif

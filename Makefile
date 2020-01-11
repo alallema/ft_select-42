@@ -20,13 +20,15 @@ LIBS =	-lft
 
 VPATH =			./src/:
 
-SRCS =	main.c		\
-		termios.c	\
-		signal.c	\
-		windows.c	\
-		key.c		\
-		print.c		\
-		utils.c
+SRCS =	main.c				\
+		termios.c			\
+		signal.c			\
+		windows.c			\
+		key.c				\
+		termcaps_print.c	\
+		utils.c				\
+		print.c				\
+		list.c
 
 SRCC =	$(addprefix $(SRCS))
 

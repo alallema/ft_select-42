@@ -1,13 +1,13 @@
 #include "select.h"
 
-t_term		*get_term(void)
+static t_term	*get_term(void)
 {
 	static t_term	term;
 
 	return (&term);
 }
 
-int			init_termios(void)
+int				init_termios(void)
 {
 	t_term			*st_term;
 
@@ -32,7 +32,7 @@ int			init_termios(void)
 	return (EXIT_SUCCESS);
 }
 
-int			close_termios(void)
+int				close_termios(void)
 {
 	t_term			*st_term;
 
@@ -44,5 +44,6 @@ int			close_termios(void)
 	// tcsetattr(STDERR_FILENO, TCSANOW, &g_select.old_attr);
 	// tputs(tgetstr("ve", NULL), 1, ft_printnbr);
 	// tputs(tgetstr("te", NULL), 1, ft_printnbr);
+	// while (1);
 	return (EXIT_SUCCESS);
 }

@@ -1,23 +1,24 @@
 #include "select.h"
 
-void    get_sigwinch(int sig)
+static void    get_sigwinch(int sig)
 {
     (void)sig;
-    // tputs(tgetstr("cl", NULL), 0, t_putchar);
+    tputs(tgetstr("cl", NULL), 0, t_putchar);
     get_window();
+    brain_print();
     return;
 }
 
-void    get_sigcont(int sig)
+static void    get_sigcont(int sig)
 {
     (void)sig;
     init_termios();
-    printf("Continu\n");
     signal_handler();
+    brain_print();
     return;
 }
 
-void    get_sigquit(int sig)
+static void    get_sigquit(int sig)
 {
     (void)sig;
     printf("SEGFAULT\n");
@@ -26,17 +27,18 @@ void    get_sigquit(int sig)
     return;
 }
 
-void    get_sigint(int sig)
+static void    get_sigint(int sig)
 {
     (void)sig;
     printf("CTRL C\n");
     // printf("ctrl c\n");
+    free_data();
     close_termios();
     exit(0);
     return;
 }
 
-void    get_sigtstp(int sig)
+static void    get_sigtstp(int sig)
 {
     (void)sig;
     close_termios();

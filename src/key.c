@@ -1,6 +1,6 @@
 #include "select.h"
 
-void		down_cursor(void)
+static void		down_cursor(void)
 {
 	t_data *data;
 	t_lst *elem;
@@ -26,7 +26,7 @@ void		down_cursor(void)
 	brain_print();
 }
 
-void		up_cursor(void)
+static void		up_cursor(void)
 {
 	t_data 	*data;
 	t_lst 	*elem;
@@ -52,7 +52,7 @@ void		up_cursor(void)
 	brain_print();
 }
 
-void		select_cursor(void)
+static void		select_cursor(void)
 {
 	t_data 	*data;
 	t_lst 	*elem;
@@ -65,11 +65,28 @@ void		select_cursor(void)
 			elem->key = UNDERLIGHT;
 		else if (elem->key == UNDERLIGHT)
 			elem->key = UNDERLINE;
-		if (elem->i == data->len - 1)
+		if (elem->i == data->len)
 			break;
 		elem = elem->next;
 	}
 	down_cursor();
+}
+
+static void    delete_cursor(void)
+{
+    t_data  *data;
+
+    data = get_data(NULL);
+    if (data->len == 1)
+    {
+        close_termios();
+        free_data();
+        exit(EXIT_SUCCESS);
+    }
+    data->len = data->len - 1;
+    clear_elem();
+    check_iterator(data, data->len);
+    brain_print();
 }
 
 int			key_press(void)
@@ -83,6 +100,7 @@ int			key_press(void)
 		if (x == CTRL_D || x == ESC || x == RETR)
 		{
 			close_termios();
+			free_data();
 			exit(EXIT_SUCCESS);
 		}
 		if (x == DOWN)
@@ -91,8 +109,8 @@ int			key_press(void)
 			up_cursor();
 		if (x == SPACE)
 			select_cursor();
-		// if (x == DEL || x == SUP)
-		// 	ft_clear_elem();
+		if (x == DEL || x == SUP)
+			delete_cursor();
 	}
 	return (EXIT_SUCCESS);
 }

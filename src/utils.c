@@ -1,54 +1,85 @@
 #include "select.h"
 
-int		print_error(char *err)
+void    free_elem(t_lst *elem)
 {
-	ft_putendl_fd(err, 2);
-	return (EXIT_FAILURE);
+    ft_memdel((void *)&elem->content);
+    ft_memdel((void *)&elem);
 }
 
-t_lst	*lstnew(char *content, int i, int key)
+void    free_data(void)
 {
-	t_lst *elem;
+    t_data  *data;
+    t_lst   *elem;
+    t_lst   *tmp;
 
-	if (!(elem = ft_memalloc(sizeof(t_lst))))
-		return (NULL);
-	if (content == NULL)
-	{
-		elem->content = NULL;
-		elem->i = 0;
-		elem->key = 0;
-	}
-	else
-	{
-		elem->content = ft_memalloc(sizeof(char *) * ft_strlen(content));
-		if (elem->content == NULL)
-			return (NULL);
-        elem->content = ft_strdup(content);
-		elem->i = i;
-		elem->key = key;
-	}
-	elem->next = NULL;
-    elem->prev = NULL;
-	return (elem);
-}
-
-void	lstpushback(t_lst **alst, char *content, int i, int key, int len)
-{
-	t_lst	*elem;
-
-	elem = *alst;
-	if (*alst != NULL)
-	{
-		while (elem->next)
-        {
-			elem = elem->next;
-        }
-	}
-	elem->next = lstnew(content, i, key);
-    elem->next->prev = elem;
-    if (i == len - 1)
+    elem = NULL;
+    tmp = NULL;
+    data = get_data(NULL);
+    if (!data)
+        return ;
+    elem = data->list;
+    while (elem)
     {
-        elem->next->next = *alst;
-        (*alst)->prev = elem->next;
+        ft_putnbr(data->len);
+        data->len = data->len - 1;
+        if (data->len != 0)
+            tmp = elem->next;
+        else
+            tmp = NULL;
+        free_elem(elem);
+        elem = tmp;
+    }
+    ft_memdel((void *)&data);
+}
+
+void    clear_elem(void)
+{
+    t_data  *data;
+    t_lst   *elem;
+
+    data = get_data(NULL);
+    if (!data)
+        return ;
+    elem = data->list;
+    while (elem)
+    {
+        if (elem->key == UNDERLINE || elem->key == UNDERLIGHT)
+        {
+            if (elem->next->key == DEFAULT)
+				elem->next->key = UNDERLINE;
+			else if (elem->next->key == HIGHTLIGHT)
+				elem->next->key = UNDERLIGHT;
+            elem->prev->next = elem->next;
+            elem->next->prev = elem->prev;
+            if (elem->i == 1)
+                data->list = elem->next;
+            free_elem(elem);
+            break;
+        }
+        elem = elem->next;
+    }
+}
+
+void    check_iterator(t_data *data, int len)
+{
+    t_lst   *elem;
+    int     i;
+    // size_t  j;
+
+    i = 1;
+    // j = 0;
+    elem = data->list;
+    while (elem)
+    {
+        elem->i = i;
+        // if (ft_strlen(elem->content) > j)
+            // j = ft_strlen(elem->content);
+        if (elem->i == len)
+        {
+            // data->len_max = j;
+            break;
+        }
+        elem = elem->next;
+        i++;
     }
 }
