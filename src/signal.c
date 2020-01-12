@@ -38,24 +38,22 @@ static void     signal_fatal(int sig)
 {
     if (sig >= SIGHUP && sig <= SIGFPE)
     {
-        free_data();
-        close_termios();
         if (sig == SIGHUP)
-            exit(print_error(SIG_SIGHUP));
+            exit_program_error(SIG_SIGHUP);
         if (sig == SIGINT)
-            exit(print_error(SIG_SIGINT));
+            exit_program_error(SIG_SIGINT);
         if (sig == SIGQUIT)
-            exit(print_error(SIG_SIGQUIT));
+            exit_program_error(SIG_SIGQUIT);
         if (sig == SIGILL)
-            exit(print_error(SIG_SIGILL));
+            exit_program_error(SIG_SIGILL);
         if (sig == SIGTRAP)
-            exit(print_error(SIG_SIGTRAP));
+            exit_program_error(SIG_SIGTRAP);
         if (sig == SIGABRT)
-            exit(print_error(SIG_SIGABRT));
+            exit_program_error(SIG_SIGABRT);
         if (sig == SIGEMT)
-            exit(print_error(SIG_SIGEMT));
+            exit_program_error(SIG_SIGEMT);
         if (sig == SIGFPE)
-            exit(print_error(SIG_SIGFPE));
+            exit_program_error(SIG_SIGFPE);
         exit(0);
     }
     return;   
@@ -65,24 +63,22 @@ static void     signal_fatal2(int sig)
 {
     if (sig >= SIGKILL && sig <= SIGTERM)
     {
-        free_data();
-        close_termios();
         if (sig == SIGKILL)
-            exit(print_error(SIG_SIGKILL));
+            exit_program_error(SIG_SIGKILL);
         if (sig == SIGBUS)
-            exit(print_error(SIG_SIGBUS));
+            exit_program_error(SIG_SIGBUS);
         if (sig == SIGSEGV)
-            exit(print_error(SIG_SIGSEGV));
+            exit_program_error(SIG_SIGSEGV);
         if (sig == SIGSYS)
-            exit(print_error(SIG_SIGSYS));
+            exit_program_error(SIG_SIGSYS);
         if (sig == SIGTERM)
-            exit(print_error(SIG_SIGTERM));
+            exit_program_error(SIG_SIGTERM);
         exit(0);
     }
     return;   
 }
 
-void    signal_handler2()
+static void     signal_handler2()
 {
     signal(SIGURG, signal_ign);
     signal(SIGCHLD, signal_ign);
@@ -100,7 +96,7 @@ void    signal_handler2()
     return;
 }
 
-void    signal_handler(void)
+void            signal_handler(void)
 {
     signal(SIGWINCH, get_sigwinch);
 	signal(SIGCONT, get_sigcont);

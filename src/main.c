@@ -51,10 +51,10 @@ int			main(int ac, char **av)
 
   data = NULL;
   if (ac < 2)
-	  return (EXIT_SUCCESS);
+	  return (print_usage());
   signal_handler();
   if (stock_data(ac, av) == EXIT_FAILURE)
-    return(EXIT_FAILURE);
+    return (EXIT_FAILURE);
   data = get_data(data);
   get_window();
   // print_list(data);

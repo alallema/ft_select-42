@@ -7,7 +7,7 @@ PIN =	\033[1;35m
 PRR =	\033[0;36m
 STD =	\033[39m
 
-NAME =	ft_select
+NAME =	ft_select 
 
 IDIR =	./inc/
 ILIB =	./libft/inc
@@ -27,6 +27,7 @@ SRCS =	main.c				\
 		key.c				\
 		termcaps_print.c	\
 		utils.c				\
+		utils_color.c		\
 		print.c				\
 		list.c
 

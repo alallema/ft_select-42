@@ -67,6 +67,8 @@ int     stock_data(int ac, char **av)
   }
   data->len = ac - 1;
   data->len_max = j;
+  data->color = ft_strdup("\033[39m");
+  data->color_nb = 7;
   get_data(data);
   return (EXIT_SUCCESS);
 }

@@ -20,5 +20,5 @@ int		print_error(char *err)
 int     print_usage(void)
 {
     ft_putendl_fd("usage: ./ft_select [args]", 2);
-	return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

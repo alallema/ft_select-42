@@ -1,5 +1,19 @@
 #include "select.h"
 
+void    exit_program_error(char *error)
+{
+    close_termios();
+    free_data();
+    exit(print_error(error));
+}
+
+void    exit_program(int ret)
+{
+    close_termios();
+    free_data();
+    exit(ret);
+}
+
 void    free_elem(t_lst *elem)
 {
     ft_memdel((void *)&elem->content);
@@ -20,7 +34,6 @@ void    free_data(void)
     elem = data->list;
     while (elem)
     {
-        ft_putnbr(data->len);
         data->len = data->len - 1;
         if (data->len != 0)
             tmp = elem->next;

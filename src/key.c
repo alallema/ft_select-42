@@ -78,11 +78,7 @@ static void    delete_cursor(void)
 
     data = get_data(NULL);
     if (data->len == 1)
-    {
-        close_termios();
-        free_data();
-        exit(EXIT_SUCCESS);
-    }
+        exit_program(EXIT_SUCCESS);
     data->len = data->len - 1;
     clear_elem();
     check_iterator(data, data->len);
@@ -96,13 +92,10 @@ int			key_press(void)
 	while (1)
 	{
 		x = 0;
-		read(0, (char *)(unsigned long)&x, 4);
+		if (read(STDERR_FILENO, (char *)(unsigned long)&x, 4) < 0)
+			exit_program_error(ERR_READ);
 		if (x == CTRL_D || x == ESC || x == RETR)
-		{
-			close_termios();
-			free_data();
-			exit(EXIT_SUCCESS);
-		}
+			exit_program(EXIT_SUCCESS);
 		if (x == DOWN)
 			down_cursor();
 		if (x == UP)
@@ -111,6 +104,8 @@ int			key_press(void)
 			select_cursor();
 		if (x == DEL || x == SUP)
 			delete_cursor();
+		if (x == TAB || x == ALT_C)
+			change_color(x);
 	}
 	return (EXIT_SUCCESS);
 }

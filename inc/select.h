@@ -50,6 +50,33 @@
 # define ALT_DOWN 1113266971
 
 /*
+** color
+*/
+// # define RED "\033[31m"
+// # define GRE "\033[32m"
+// # define YEL "\033[33m"
+// # define BLU "\033[34m"
+// # define PUR "\033[94m"
+// # define PIN "\033[1;35m"
+// # define PRR "\033[0;36m"
+// # define STD "\033[39m"
+
+typedef enum	e_enum
+{
+	RED,
+	PIN,
+	BLU,
+	PUR,
+	PRR,
+	GRE,
+	YEL,
+	STD,
+	BLK,
+}				t_enum;
+
+# define COLOR_NB 8
+
+/*
 ** signal
 */
 # define SIG_SIGHUP   "Receive Signal : terminal line hangup"
@@ -72,6 +99,8 @@
 ** error
 */
 # define ERR_MALL "Memory error"
+# define ERR_READ "Read error"
+# define ERR_IOCTL "Ioctl error"
 
 /*
 ** print format
@@ -102,6 +131,8 @@ typedef struct 	s_data
 {
 	int		len;
 	int		len_max;
+	char	*color;
+	int		color_nb;
 	t_lst	*list;
 }				t_data;
 
@@ -113,6 +144,7 @@ typedef struct	s_term
 
 int				init_termios(void);
 int				close_termios(void);
+int     		print_usage(void);
 int				t_putchar(int i);
 void			signal_handler(void);
 t_win			*get_window(void);
@@ -125,5 +157,8 @@ int     		stock_data(int ac, char **av);
 void    		free_data(void);
 void    		clear_elem(void);
 void    		check_iterator(t_data *data, int len);
+void    		exit_program_error(char *error);
+void    		exit_program(int ret);
+void			change_color(int action);
 
 #endif
