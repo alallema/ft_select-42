@@ -2,7 +2,7 @@
 
 int			t_putchar(int i)
 {
-	write(1, &i, 1);
+	write(STDERR_FILENO, &i, 1);
 	return (0);
 }
 

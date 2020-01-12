@@ -1,6 +1,6 @@
 #include "select.h"
 
-t_lst	*lstnew(char *content, int i, int key)
+static t_lst	*lstnew(char *content, int i, int key)
 {
 	t_lst *elem;
 
@@ -23,7 +23,7 @@ t_lst	*lstnew(char *content, int i, int key)
 	return (elem);
 }
 
-void	lstpushback(t_lst **alst, char *content, int i, int key, int len)
+static void	lstpushback(t_lst **alst, char *content, int i, int key, int len)
 {
 	t_lst	*elem;
 
@@ -42,4 +42,31 @@ void	lstpushback(t_lst **alst, char *content, int i, int key, int len)
         elem->next->next = *alst;
         (*alst)->prev = elem->next;
     }
+}
+
+int     stock_data(int ac, char **av)
+{
+  int     i;
+  size_t  j;
+  t_data  *data;
+
+  i = 0;
+  j = 0;
+  if (!(data = ft_memalloc(sizeof(t_data)))
+    && !(data->list = ft_memalloc(sizeof(t_list *))))
+    return (print_error(ERR_MALL));
+  while (ac > i)
+  {
+    if (i == 1)
+			data->list = lstnew(av[i], i, 1);
+		if (i > 1)
+			lstpushback(&(data->list), av[i], i, 0, ac - 1);
+    if (ft_strlen(av[i]) > j)
+      j = ft_strlen(av[i]);
+    i++;
+  }
+  data->len = ac - 1;
+  data->len_max = j;
+  get_data(data);
+  return (EXIT_SUCCESS);
 }

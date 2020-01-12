@@ -2,23 +2,23 @@
 
 static void	print_elem(char *s)
 {
-	ft_putstr_fd("\033[1;35m", 2);
-	ft_putendl_fd(s, 2);
+	ft_putstr_fd("\033[1;35m", STDERR_FILENO);
+	ft_putendl_fd(s, STDERR_FILENO);
 }
 
 static void	print_underline(char *s)
 {
 	tputs(tgetstr("us", NULL), 1, t_putchar);
-	ft_putstr_fd("\033[1;35m", 2);
-	ft_putendl_fd(s, 2);
+	ft_putstr_fd("\033[1;35m", STDERR_FILENO);
+	ft_putendl_fd(s, STDERR_FILENO);
 	tputs(tgetstr("ue", NULL), 1, t_putchar);
 }
 
 static void    print_hightlight(char *s)
 {
 	tputs(tgetstr("so", NULL), 1, t_putchar);
-	ft_putstr_fd("\033[1;35m", 2);
-	ft_putendl_fd(s, 2);
+	ft_putstr_fd("\033[1;35m", STDERR_FILENO);
+	ft_putendl_fd(s, STDERR_FILENO);
 	tputs(tgetstr("se", NULL), 1, t_putchar);
 }
 
@@ -26,8 +26,8 @@ static void	print_underlight(char *s)
 {
 	tputs(tgetstr("so", NULL), 1, t_putchar);
 	tputs(tgetstr("us", NULL), 1, t_putchar);
-	ft_putstr_fd("\033[1;35m", 2);
-	ft_putendl_fd(s, 2);
+	ft_putstr_fd("\033[1;35m", STDERR_FILENO);
+	ft_putendl_fd(s, STDERR_FILENO);
 	tputs(tgetstr("se", NULL), 1, t_putchar);
 	tputs(tgetstr("ue", NULL), 1, t_putchar);
 }
@@ -39,7 +39,7 @@ int		brain_print(void)
 
 	data = get_data(NULL);
 	elem = data->list;
-	tputs(tgetstr("cl", NULL), 0, t_putchar);
+	tputs(tgetstr("cl", NULL), 1, t_putchar);
 	while (elem)
 	{
 		if (elem->key == DEFAULT)

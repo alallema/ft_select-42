@@ -50,6 +50,25 @@
 # define ALT_DOWN 1113266971
 
 /*
+** signal
+*/
+# define SIG_SIGHUP   "Receive Signal : terminal line hangup"
+# define SIG_SIGINT   "Receive Signal : interrupt program"
+# define SIG_SIGQUIT  "Receive Signal : quit program"
+# define SIG_SIGILL   "Receive Signal : illegal instruction"
+# define SIG_SIGTRAP  "Receive Signal : trace trap"
+# define SIG_SIGABRT  "Receive Signal : abort program (formerly SIGIOT)"
+# define SIG_SIGEMT   "Receive Signal : emulate instruction executed"
+# define SIG_SIGFPE   "Receive Signal : floating-point exception"
+# define SIG_SIGKILL  "Receive Signal : kill program"
+# define SIG_SIGBUS   "Receive Signal : bus error"
+# define SIG_SIGSEGV  "Receive Signal : segmentation violation"
+# define SIG_SIGSYS   "Receive Signal : non-existent system call invoked"
+# define SIG_SIGPIPE  "Receive Signal : write on a pipe with no reader"
+# define SIG_SIGALRM  "Receive Signal : real-time timer expired"
+# define SIG_SIGTERM  "Receive Signal : software termination signal"
+
+/*
 ** error
 */
 # define ERR_MALL "Memory error"
@@ -102,8 +121,7 @@ void			print_key_stdout(int i);
 int				print_error(char *err);
 int				brain_print(void);
 t_data			*get_data(t_data *data);
-t_lst			*lstnew(char *content, int i, int key);
-void			lstpushback(t_lst **alst, char *content, int i, int key, int len);
+int     		stock_data(int ac, char **av);
 void    		free_data(void);
 void    		clear_elem(void);
 void    		check_iterator(t_data *data, int len);
