@@ -24,7 +24,7 @@ int		compute_right(int i, int col, int row, int len)
 
 	(void)col;
 	j = 0;
-	if (i != 0 && i + row < len)
+	if (i != 0 && i + row <= len)
 	{
 		j = i + row;
 		if (j > len)
@@ -32,7 +32,8 @@ int		compute_right(int i, int col, int row, int len)
 	}
 	else
 		j =  i%row;
-	
+    if (j == 0)
+        j = row;
 	return j;
 }
 

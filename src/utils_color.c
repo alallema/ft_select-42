@@ -16,7 +16,7 @@ static void		bold_color(void)
     data = get_data(NULL);
 	free(data->color);
 	data->color = ft_strdup(color[data->color_nb - 10]);
-	brain_print();
+	display();
 }
 
 static void	    normal_color(void)
@@ -35,7 +35,7 @@ static void	    normal_color(void)
     data = get_data(NULL);
 	free(data->color);
 	data->color = ft_strdup(color[data->color_nb]);
-	brain_print();
+	display();
 }
 
 void	        change_color(int action)

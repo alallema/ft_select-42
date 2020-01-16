@@ -14,12 +14,12 @@ static t_lst	*lstnew(char *content, int i, int key)
 	}
 	else
 	{
-        elem->content = ft_strdup(content);
+    elem->content = ft_strdup(content);
 		elem->i = i;
 		elem->key = key;
 	}
 	elem->next = NULL;
-    elem->prev = NULL;
+  elem->prev = NULL;
 	return (elem);
 }
 
@@ -63,6 +63,11 @@ int     stock_data(int ac, char **av)
 			lstpushback(&(data->list), av[i], i, 0, ac - 1);
     if (ft_strlen(av[i]) > j)
       j = ft_strlen(av[i]);
+    if (ac == 2 && data->list)
+    {
+      data->list->next = data->list;
+      data->list->prev = data->list;
+    }
     i++;
   }
   data->len = ac - 1;

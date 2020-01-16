@@ -33,23 +33,8 @@ static void	print_underlight(char *s, char *color)
 	tputs(tgetstr("ue", NULL), 1, t_putchar);
 }
 
-int		brain_print(void)
+int		brain_print(t_data *data, t_lst *elem, int i, int j)
 {
-	t_lst 	*elem;
-	t_data	*data;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	data = get_data(NULL);
-	elem = data->list;
-	tputs(tgetstr("cl", NULL), 1, t_putchar);
-	if (data->col == 0 && data->row == 0)
-	{
-		ft_putendl_fd("Too small", 2);
-		return (EXIT_SUCCESS);
-	}
 	while (elem)
 	{
 		tputs(tgoto(tgetstr("cm", NULL), i, j), 1, t_putchar);
@@ -73,20 +58,3 @@ int		brain_print(void)
 	}
 	return (EXIT_SUCCESS);
 }
-
-// int		display(void)
-// {
-// 	static t_win	*win;
-// 	t_data			*data;
-
-// 	win = get_window();
-// 	data = get_data(NULL);
-// 	brain_print();
-// 	if ((data->len_max + 2 > win->ws_col)
-// 	|| ((data->len_max + 2)* data->len) > (win->ws_row * win->ws_col))
-// 	{
-// 		tputs(tgetstr("cl", NULL), 0, t_putchar);
-// 		ft_putendl_fd("Too small", 2);
-// 	}
-// 	return (EXIT_SUCCESS);
-// }

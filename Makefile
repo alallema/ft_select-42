@@ -23,6 +23,7 @@ VPATH =			./src/:
 SRCS =	main.c				\
 		termios.c			\
 		signal.c			\
+		signal_handler.c	\
 		windows.c			\
 		key.c				\
 		display.c			\

@@ -18,21 +18,14 @@ void    check_iterator(t_data *data, int len)
 {
     t_lst   *elem;
     int     i;
-    // size_t  j;
 
     i = 1;
-    // j = 0;
     elem = data->list;
     while (elem)
     {
         elem->i = i;
-        // if (ft_strlen(elem->content) > j)
-            // j = ft_strlen(elem->content);
         if (elem->i == len)
-        {
-            // data->len_max = j;
             break;
-        }
         elem = elem->next;
         i++;
     }
@@ -60,4 +53,19 @@ void    return_result(void)
     ft_putstr_fd("\n", 1);
     free_data();
     exit(EXIT_SUCCESS);
+}
+
+t_data		*get_data(t_data *data)
+{
+	static t_data	*elem;
+
+  if (!elem && !data)
+    return (NULL);
+	if (!data)
+		return (elem);
+	else
+	{
+		elem = data;
+		return (elem);
+	}
 }

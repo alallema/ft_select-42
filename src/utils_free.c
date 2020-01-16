@@ -1,12 +1,12 @@
 #include "select.h"
 
-void    free_elem(t_lst *elem)
+static void free_elem(t_lst *elem)
 {
     ft_memdel((void *)&elem->content);
     ft_memdel((void *)&elem);
 }
 
-void    free_data(void)
+void        free_data(void)
 {
     t_data  *data;
     t_lst   *elem;
@@ -29,7 +29,6 @@ void    free_data(void)
         elem = tmp;
     }
     ft_memdel((void *)&data);
-    // ft_memdel((void *)&data->color);
 }
 
 void    clear_elem(void)
@@ -45,10 +44,7 @@ void    clear_elem(void)
     {
         if (elem->key == UNDERLINE || elem->key == UNDERLIGHT)
         {
-            if (elem->next->key == DEFAULT)
-				elem->next->key = UNDERLINE;
-			else if (elem->next->key == HIGHTLIGHT)
-				elem->next->key = UNDERLIGHT;
+            underline_elem(elem->next);
             elem->prev->next = elem->next;
             elem->next->prev = elem->prev;
             if (elem->i == 1)

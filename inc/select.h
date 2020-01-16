@@ -151,7 +151,7 @@ void			get_window(void);
 int				key_press(void);
 void			print_key_stdout(int i);
 int				print_error(char *err);
-int				brain_print(void);
+int				display(void);
 t_data			*get_data(t_data *data);
 int     		stock_data(int ac, char **av);
 void    		free_data(void);
@@ -165,5 +165,9 @@ void			remove_underline_elem(t_lst *elem);
 void			underline_elem(t_lst *elem);
 int				compute_right(int i, int col, int row, int len);
 int				compute_left(int i, int col, int row, int len);
+int				brain_print(t_data *data, t_lst *elem, int i, int j);
+void    		get_sigwinch(int sig);
+void    		get_sigcont(int sig);
+void    		get_sigtstp(int sig);
 
 #endif

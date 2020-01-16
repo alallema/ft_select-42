@@ -24,18 +24,9 @@ static void		side_cursor(int x)
 			underline_elem(elem);
 			break;
 		}
-		// 	ft_putstr_fd("LAST i: ", 1);
-		// 	ft_putnbr_fd(i, 1);
-		// 	ft_putstr_fd(" col: ", 1);
-		// 	ft_putnbr_fd(data->col, 1);
-		// 	ft_putstr_fd(" row: ", 1);
-		// 	ft_putnbr_fd(data->row, 1);
-		// 	ft_putstr_fd(" len: ", 1);
-		// 	ft_putnbr_fd(data->len, 1);
-		// 	ft_putstr_fd("\n", 1);
 		elem = elem->next;
 	}
-    brain_print();
+    display();
 	return ;
 }
 
@@ -59,7 +50,7 @@ static void		move_cursor(int x)
 		}
 		elem = elem->next;
 	}
-	brain_print();
+	display();
 }
 
 static void		select_cursor(void)
@@ -92,7 +83,7 @@ static void    delete_cursor(void)
     data->len = data->len - 1;
     clear_elem();
     check_iterator(data, data->len);
-    brain_print();
+    display();
 }
 
 int			key_press(void)
