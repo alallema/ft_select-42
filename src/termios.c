@@ -27,7 +27,6 @@ int				init_termios(void)
 		return (EXIT_FAILURE);
 	tputs(tgetstr("ti", NULL), 1, t_putchar);
 	tputs(tgetstr("vi", NULL), 1, t_putchar);
-	// tputs(tgetstr("cl", NULL), 0, t_putchar);
 	return (EXIT_SUCCESS);
 }
 

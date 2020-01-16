@@ -14,65 +14,6 @@ void    exit_program(int ret)
     exit(ret);
 }
 
-void    free_elem(t_lst *elem)
-{
-    ft_memdel((void *)&elem->content);
-    ft_memdel((void *)&elem);
-}
-
-void    free_data(void)
-{
-    t_data  *data;
-    t_lst   *elem;
-    t_lst   *tmp;
-
-    elem = NULL;
-    tmp = NULL;
-    data = get_data(NULL);
-    if (!data)
-        return ;
-    elem = data->list;
-    while (elem)
-    {
-        data->len = data->len - 1;
-        if (data->len != 0)
-            tmp = elem->next;
-        else
-            tmp = NULL;
-        free_elem(elem);
-        elem = tmp;
-    }
-    ft_memdel((void *)&data);
-}
-
-void    clear_elem(void)
-{
-    t_data  *data;
-    t_lst   *elem;
-
-    data = get_data(NULL);
-    if (!data)
-        return ;
-    elem = data->list;
-    while (elem)
-    {
-        if (elem->key == UNDERLINE || elem->key == UNDERLIGHT)
-        {
-            if (elem->next->key == DEFAULT)
-				elem->next->key = UNDERLINE;
-			else if (elem->next->key == HIGHTLIGHT)
-				elem->next->key = UNDERLIGHT;
-            elem->prev->next = elem->next;
-            elem->next->prev = elem->prev;
-            if (elem->i == 1)
-                data->list = elem->next;
-            free_elem(elem);
-            break;
-        }
-        elem = elem->next;
-    }
-}
-
 void    check_iterator(t_data *data, int len)
 {
     t_lst   *elem;
@@ -95,4 +36,28 @@ void    check_iterator(t_data *data, int len)
         elem = elem->next;
         i++;
     }
+}
+
+void    return_result(void)
+{
+    t_data  *data;
+    t_lst  *elem;
+
+    data = get_data(NULL);
+    elem = data->list;
+    close_termios();
+    while (elem)
+    {
+        if (elem->key == HIGHTLIGHT || elem->key == UNDERLIGHT)
+        {
+            ft_putstr_fd(elem->content, 1);
+            ft_putstr_fd(" ", 1);
+        }
+        elem = elem->next;
+        if (elem->i == data->len)
+            break;
+    }
+    ft_putstr_fd("\n", 1);
+    free_data();
+    exit(EXIT_SUCCESS);
 }

@@ -6,11 +6,6 @@ int			t_putchar(int i)
 	return (0);
 }
 
-// void		t_puts(char *s, int i)
-// {
-// 	tputs(tgetstr(s, NULL), i, t_putchar);
-// }
-
 int		print_error(char *err)
 {
 	ft_putendl_fd(err, 2);

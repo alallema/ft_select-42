@@ -114,8 +114,6 @@ typedef struct	s_win
 {
 	int		ws_col;
 	int		ws_row;
-	int		col;
-	int		row;
 }				t_win;
 
 typedef struct	s_lst
@@ -131,6 +129,8 @@ typedef struct 	s_data
 {
 	int		len;
 	int		len_max;
+	int		col;
+	int		row;
 	char	*color;
 	int		color_nb;
 	t_lst	*list;
@@ -147,7 +147,7 @@ int				close_termios(void);
 int     		print_usage(void);
 int				t_putchar(int i);
 void			signal_handler(void);
-t_win			*get_window(void);
+void			get_window(void);
 int				key_press(void);
 void			print_key_stdout(int i);
 int				print_error(char *err);
@@ -160,5 +160,10 @@ void    		check_iterator(t_data *data, int len);
 void    		exit_program_error(char *error);
 void    		exit_program(int ret);
 void			change_color(int action);
+void    		return_result(void);
+void			remove_underline_elem(t_lst *elem);
+void			underline_elem(t_lst *elem);
+int				compute_right(int i, int col, int row, int len);
+int				compute_left(int i, int col, int row, int len);
 
 #endif

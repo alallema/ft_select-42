@@ -25,9 +25,11 @@ SRCS =	main.c				\
 		signal.c			\
 		windows.c			\
 		key.c				\
-		termcaps_print.c	\
+		display.c			\
 		utils.c				\
 		utils_color.c		\
+		utils_cursor.c		\
+		utils_free.c		\
 		print.c				\
 		list.c
 

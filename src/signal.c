@@ -3,7 +3,6 @@
 static void    get_sigwinch(int sig)
 {
     (void)sig;
-    tputs(tgetstr("cl", NULL), 0, t_putchar);
     get_window();
     brain_print();
     return;
@@ -29,7 +28,8 @@ static void    get_sigtstp(int sig)
 
 static void     signal_ign(int sig)
 {
-    if ((sig >= SIGCHLD && sig <= SIGUSR2) || sig == SIGURG)
+    if ((sig >= SIGCHLD && sig <= SIGPROF) || sig == SIGURG
+    || (sig >= SIGINFO && sig <= SIGUSR2))
 	    signal(sig, SIG_IGN);
     return;
 }
@@ -89,7 +89,6 @@ static void     signal_handler2()
     signal(SIGXFSZ, signal_ign);
     signal(SIGVTALRM, signal_ign);
     signal(SIGPROF, signal_ign);
-    signal(SIGWINCH, signal_ign);
     signal(SIGINFO, signal_ign);
     signal(SIGUSR1, signal_ign);
     signal(SIGUSR2, signal_ign);
