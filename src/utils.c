@@ -35,32 +35,37 @@ void    return_result(void)
 {
     t_data  *data;
     t_lst  *elem;
+    int     i;
 
     data = get_data(NULL);
     elem = data->list;
     close_termios();
+    i = 0;
     while (elem)
     {
         if (elem->key == HIGHTLIGHT || elem->key == UNDERLIGHT)
         {
-            ft_putstr_fd(elem->content, 1);
-            ft_putstr_fd(" ", 1);
+            if (i == 1)
+                ft_putstr_fd(" ", STDOUT_FILENO);
+            ft_putstr_fd(elem->content, STDOUT_FILENO);
+            i = 1;
         }
         elem = elem->next;
         if (elem->i == data->len)
             break;
     }
-    ft_putstr_fd("\n", 1);
+    if (i == 1)
+        ft_putstr_fd("\n", STDOUT_FILENO);
     free_data();
     exit(EXIT_SUCCESS);
 }
 
 t_data		*get_data(t_data *data)
 {
-	static t_data	*elem;
+    static t_data	*elem;
 
-  if (!elem && !data)
-    return (NULL);
+    if (!elem && !data)
+        return (NULL);
 	if (!data)
 		return (elem);
 	else

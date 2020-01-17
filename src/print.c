@@ -8,13 +8,13 @@ int		t_putchar(int i)
 
 int		print_error(char *err)
 {
-	ft_putendl_fd(err, 2);
+	ft_putendl_fd(err, STDERR_FILENO);
 	return (EXIT_FAILURE);
 }
 
 int     print_usage(void)
 {
-    ft_putendl_fd("usage: ./ft_select [args]", 2);
+    ft_putendl_fd("usage: ./ft_select [args]", STDERR_FILENO);
 	return (EXIT_SUCCESS);
 }
 
@@ -32,7 +32,7 @@ int		display(void)
 	tputs(tgetstr("cl", NULL), 1, t_putchar);
 	if (data->col == 0 && data->row == 0)
 	{
-		ft_putendl_fd("Too small", 2);
+		ft_putendl_fd("Too small", STDERR_FILENO);
 		return (EXIT_SUCCESS);
 	}
 	brain_print(data, elem, i, j);

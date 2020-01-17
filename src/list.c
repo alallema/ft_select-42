@@ -23,7 +23,7 @@ static t_lst	*lstnew(char *content, int i, int key)
 	return (elem);
 }
 
-static void	lstpushback(t_lst **alst, char *content, int i, int key, int len)
+static void	  lstpushback(t_lst **alst, char *content, int i, int key, int len)
 {
 	t_lst	*elem;
 
@@ -44,7 +44,16 @@ static void	lstpushback(t_lst **alst, char *content, int i, int key, int len)
     }
 }
 
-int     stock_data(int ac, char **av)
+static void   init_data(t_data *data, int ac, int j)
+{
+  data->len = ac - 1;
+  data->len_max = j;
+  data->color = ft_strdup("\033[39m");
+  data->color_nb = 7;
+  get_data(data);
+}
+
+int           stock_data(int ac, char **av)
 {
   int     i;
   size_t  j;
@@ -70,10 +79,6 @@ int     stock_data(int ac, char **av)
     }
     i++;
   }
-  data->len = ac - 1;
-  data->len_max = j;
-  data->color = ft_strdup("\033[39m");
-  data->color_nb = 7;
-  get_data(data);
+  init_data(data, ac, j);
   return (EXIT_SUCCESS);
 }
