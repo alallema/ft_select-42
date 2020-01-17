@@ -7,8 +7,10 @@ Ce projet est une initiation à la manipulation du terminal avec les termcaps. L
 
 ```$> ./ft_select [arg] [args ...]```
 
+- ⬅︎➡︎⬆︎⬇︎ mouvement
 - `Tab` change la couleur du texte
 - `ALT+C` passe le texte en gras
+- `Space` selectionne un élément
 
 ## Fonctions autorisees
 

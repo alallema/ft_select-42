@@ -14,7 +14,10 @@ int		print_error(char *err)
 
 int     print_usage(void)
 {
-    ft_putendl_fd("usage: ./ft_select [args]", STDERR_FILENO);
+    ft_putendl_fd("usage: ./ft_select [args]\n\
+	⬅︎  ➡︎ ⬆︎ ⬇︎ move cursor with arrow direction\n\
+	TAB change color\n\
+	SPACE select item", STDERR_FILENO);
 	return (EXIT_SUCCESS);
 }
 
