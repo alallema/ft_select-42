@@ -12,6 +12,7 @@ _ft_strdup:
     mov [rsp], rdi    ; save src
     call _ft_strlen
 
+    inc rax
     mov rdi, rax    ; len in first arg
     call _malloc
 
