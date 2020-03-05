@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alallema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 15:47:42 by alallema          #+#    #+#             */
+/*   Updated: 2020/03/05 16:06:59 by alallema         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_LIBFT_H
 # define FT_LIBFT_H
 # include <unistd.h>
@@ -60,28 +72,30 @@ void				ft_lstclear(t_list **begin_list);
 void				ft_lstpushback(t_list **al, void const *c, size_t s, int i);
 int					get_next_line(const int fd, char **line);
 
-//** functions from libftasm  **//
+/*
+** functions from libftasm
+*/
 
-void	ft_bzero(void *s, size_t n);
-char	*ft_strcat(char *s1, char *s2);
-int		ft_isalpha(int i);
-int		ft_isdigit(int i);
-int		ft_isalnum(int i);
-int		ft_isascii(int i);
-int		ft_isprint(int i);
-int		ft_tolower(int c);
-int		ft_toupper(int c);
-int		ft_puts(const char *s);
-size_t	ft_strlen(const char *s);
-void	*ft_memset(void *s, int c, size_t n);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-char	*ft_strdup(char *s);
-void	ft_cat(int fd);
+void				ft_bzero(void *s, size_t n);
+char				*ft_strcat(char *s1, char *s2);
+int					ft_isalpha(int i);
+int					ft_isdigit(int i);
+int					ft_isalnum(int i);
+int					ft_isascii(int i);
+int					ft_isprint(int i);
+int					ft_tolower(int c);
+int					ft_toupper(int c);
+int					ft_puts(const char *s);
+size_t				ft_strlen(const char *s);
+void				*ft_memset(void *s, int c, size_t n);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
+char				*ft_strdup(char *s);
+void				ft_cat(int fd);
 
-void	ft_memdel(void **ap);
-char	*ft_strcpy(char * dst, const char * src);
-void	*ft_memalloc(size_t size);
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_atoi(const char *s);
+void				ft_memdel(void **ap);
+char				*ft_strcpy(char *dst, const char *src);
+void				*ft_memalloc(size_t size);
+int					ft_strcmp(const char *s1, const char *s2);
+int					ft_atoi(const char *s);
 
 #endif

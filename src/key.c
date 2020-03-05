@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alallema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 15:48:50 by alallema          #+#    #+#             */
+/*   Updated: 2020/03/05 16:19:59 by alallema         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "select.h"
 
 static void		side_cursor(int x)
 {
-    t_data  *data;
-	t_lst 	*elem;
+	t_data	*data;
+	t_lst	*elem;
 	int		i;
 
 	data = get_data(NULL);
@@ -22,18 +34,18 @@ static void		side_cursor(int x)
 		if (elem->i == i)
 		{
 			underline_elem(elem);
-			break;
+			break ;
 		}
 		elem = elem->next;
 	}
-    display();
+	display();
 	return ;
 }
 
 static void		move_cursor(int x)
 {
-	t_data *data;
-	t_lst *elem;
+	t_data	*data;
+	t_lst	*elem;
 
 	data = get_data(NULL);
 	elem = data->list;
@@ -46,7 +58,7 @@ static void		move_cursor(int x)
 				underline_elem(elem->next);
 			if (x == UP)
 				underline_elem(elem->prev);
-			break;
+			break ;
 		}
 		elem = elem->next;
 	}
@@ -55,8 +67,8 @@ static void		move_cursor(int x)
 
 static void		select_cursor(void)
 {
-	t_data 	*data;
-	t_lst 	*elem;
+	t_data	*data;
+	t_lst	*elem;
 
 	data = get_data(NULL);
 	elem = data->list;
@@ -67,26 +79,26 @@ static void		select_cursor(void)
 		else if (elem->key == UNDERLIGHT)
 			elem->key = UNDERLINE;
 		if (elem->i == data->len)
-			break;
+			break ;
 		elem = elem->next;
 	}
 	move_cursor(DOWN);
 }
 
-static void    delete_cursor(void)
+static void		delete_cursor(void)
 {
-    t_data  *data;
+	t_data	*data;
 
-    data = get_data(NULL);
-    if (data->len == 1)
-        exit_program(EXIT_SUCCESS);
-    data->len = data->len - 1;
-    clear_elem();
-    check_iterator(data, data->len);
-    display();
+	data = get_data(NULL);
+	if (data->len == 1)
+		exit_program(EXIT_SUCCESS);
+	data->len = data->len - 1;
+	clear_elem();
+	check_iterator(data, data->len);
+	display();
 }
 
-int			key_press(void)
+int				key_press(void)
 {
 	unsigned int	x;
 

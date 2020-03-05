@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_cursor.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alallema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 15:59:53 by alallema          #+#    #+#             */
+/*   Updated: 2020/03/05 16:15:23 by alallema         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "select.h"
 
 void	remove_underline_elem(t_lst *elem)
@@ -31,10 +43,10 @@ int		compute_right(int i, int col, int row, int len)
 			j = j - row;
 	}
 	else
-		j =  i%row;
-    if (j == 0)
-        j = row;
-	return j;
+		j = i % row;
+	if (j == 0)
+		j = row;
+	return (j);
 }
 
 int		compute_left(int i, int col, int row, int len)
@@ -50,5 +62,5 @@ int		compute_left(int i, int col, int row, int len)
 		if (j > len)
 			j = j - row;
 	}
-	return j;
+	return (j);
 }

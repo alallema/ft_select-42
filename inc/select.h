@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   select.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alallema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 15:45:51 by alallema          #+#    #+#             */
+/*   Updated: 2020/03/05 16:05:51 by alallema         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SELECT_H
 # define SELECT_H
 
@@ -52,14 +64,6 @@
 /*
 ** color
 */
-// # define RED "\033[31m"
-// # define GRE "\033[32m"
-// # define YEL "\033[33m"
-// # define BLU "\033[34m"
-// # define PUR "\033[94m"
-// # define PIN "\033[1;35m"
-// # define PRR "\033[0;36m"
-// # define STD "\033[39m"
 
 typedef enum	e_enum
 {
@@ -125,7 +129,7 @@ typedef struct	s_lst
 	struct s_lst	*prev;
 }				t_lst;
 
-typedef struct 	s_data
+typedef struct	s_data
 {
 	int		len;
 	int		len_max;
@@ -144,7 +148,7 @@ typedef struct	s_term
 
 int				init_termios(void);
 int				close_termios(void);
-int     		print_usage(void);
+int				print_usage(void);
 int				t_putchar(int i);
 void			signal_handler(void);
 void			get_window(void);
@@ -153,21 +157,21 @@ void			print_key_stdout(int i);
 int				print_error(char *err);
 int				display(void);
 t_data			*get_data(t_data *data);
-int     		stock_data(int ac, char **av);
-void    		free_data(void);
-void    		clear_elem(void);
-void    		check_iterator(t_data *data, int len);
-void    		exit_program_error(char *error);
-void    		exit_program(int ret);
+int				stock_data(int ac, char **av);
+void			free_data(void);
+void			clear_elem(void);
+void			check_iterator(t_data *data, int len);
+void			exit_program_error(char *error);
+void			exit_program(int ret);
 void			change_color(int action);
-void    		return_result(void);
+void			return_result(void);
 void			remove_underline_elem(t_lst *elem);
 void			underline_elem(t_lst *elem);
 int				compute_right(int i, int col, int row, int len);
 int				compute_left(int i, int col, int row, int len);
 int				brain_print(t_data *data, t_lst *elem, int i, int j);
-void    		get_sigwinch(int sig);
-void    		get_sigcont(int sig);
-void    		get_sigtstp(int sig);
+void			get_sigwinch(int sig);
+void			get_sigcont(int sig);
+void			get_sigtstp(int sig);
 
 #endif

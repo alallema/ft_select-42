@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alallema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 15:53:19 by alallema          #+#    #+#             */
+/*   Updated: 2020/03/05 16:11:38 by alallema         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "select.h"
 
 int		t_putchar(int i)
@@ -12,9 +24,9 @@ int		print_error(char *err)
 	return (EXIT_FAILURE);
 }
 
-int     print_usage(void)
+int		print_usage(void)
 {
-    ft_putendl_fd("usage: ./ft_select [args]\n\
+	ft_putendl_fd("usage: ./ft_select [args]\n\
 	⬅︎  ➡︎ ⬆︎ ⬇︎ move cursor with arrow direction\n\
 	TAB change color\n\
 	SPACE select item", STDERR_FILENO);
@@ -23,7 +35,7 @@ int     print_usage(void)
 
 int		display(void)
 {
-	t_lst 	*elem;
+	t_lst	*elem;
 	t_data	*data;
 	int		i;
 	int		j;

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alallema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 16:00:13 by alallema          #+#    #+#             */
+/*   Updated: 2020/03/05 16:14:13 by alallema         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "select.h"
 
 static void		bold_color(void)
 {
-    t_data  *data;
+	t_data	*data;
 	char	color[COLOR_NB][10];
 
 	ft_strcpy(color[RED], "\033[1;31m");
@@ -13,15 +25,15 @@ static void		bold_color(void)
 	ft_strcpy(color[GRE], "\033[1;32m");
 	ft_strcpy(color[YEL], "\033[1;33m");
 	ft_strcpy(color[STD], "\033[1;39m");
-    data = get_data(NULL);
+	data = get_data(NULL);
 	free(data->color);
 	data->color = ft_strdup(color[data->color_nb - 10]);
 	display();
 }
 
-static void	    normal_color(void)
+static void		normal_color(void)
 {
-    t_data  *data;
+	t_data	*data;
 	char	color[COLOR_NB][10];
 
 	ft_strcpy(color[RED], "\033[31m");
@@ -32,17 +44,17 @@ static void	    normal_color(void)
 	ft_strcpy(color[GRE], "\033[32m");
 	ft_strcpy(color[YEL], "\033[33m");
 	ft_strcpy(color[STD], "\033[39m");
-    data = get_data(NULL);
+	data = get_data(NULL);
 	free(data->color);
 	data->color = ft_strdup(color[data->color_nb]);
 	display();
 }
 
-void	        change_color(int action)
+void			change_color(int action)
 {
-    t_data  *data;
+	t_data	*data;
 
-    data = get_data(NULL);
+	data = get_data(NULL);
 	if (action == TAB)
 	{
 		if (data->color_nb == COLOR_NB - 1)

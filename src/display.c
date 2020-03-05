@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alallema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 15:48:12 by alallema          #+#    #+#             */
+/*   Updated: 2020/03/05 16:08:01 by alallema         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "select.h"
 
 static void	print_elem(char *s, char *color)
@@ -15,7 +27,7 @@ static void	print_underline(char *s, char *color)
 	tputs(tgetstr("ue", NULL), 1, t_putchar);
 }
 
-static void    print_hightlight(char *s, char *color)
+static void	print_hightlight(char *s, char *color)
 {
 	tputs(tgetstr("so", NULL), 1, t_putchar);
 	ft_putstr_fd(color, STDERR_FILENO);
@@ -33,7 +45,7 @@ static void	print_underlight(char *s, char *color)
 	tputs(tgetstr("ue", NULL), 1, t_putchar);
 }
 
-int		brain_print(t_data *data, t_lst *elem, int i, int j)
+int			brain_print(t_data *data, t_lst *elem, int i, int j)
 {
 	while (elem)
 	{
@@ -47,7 +59,7 @@ int		brain_print(t_data *data, t_lst *elem, int i, int j)
 		if (elem->key == UNDERLIGHT)
 			print_underlight(elem->content, data->color);
 		if (elem->i == data->len)
-			break;
+			break ;
 		elem = elem->next;
 		j++;
 		if (j == data->row)

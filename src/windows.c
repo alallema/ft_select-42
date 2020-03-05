@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   windows.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alallema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 16:01:03 by alallema          #+#    #+#             */
+/*   Updated: 2020/03/05 16:17:07 by alallema         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "select.h"
 
 void		get_window(void)
@@ -9,17 +21,16 @@ void		get_window(void)
 	if (ioctl(STDERR_FILENO, TIOCGWINSZ, &window) < 0)
 		exit_program_error(ERR_IOCTL);
 	if ((data->len_max + 2 > window.ws_col)
-	|| (((data->len_max + 2)* data->len) > ((window.ws_row - 1) * window.ws_col)))
+	|| (((data->len_max + 2) * data->len) > ((window.ws_row - 1) * window.ws_col)))
 	{
 		data->col = 0;
 		data->row = 0;
 	}
 	else if (data->len > window.ws_row - 1)
 	{
-
 		data->row = window.ws_row - 1;
-		data->col = (data->len/data->row);
-		if (data->len%data->row != 0)
+		data->col = (data->len / data->row);
+		if (data->len % data->row != 0)
 			data->col++;
 	}
 	else
